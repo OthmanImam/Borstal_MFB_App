@@ -1,0 +1,41 @@
+/src
+│
+├── /api                   
+│   └── auth.js            
+├── /components 
+│
+├── /components
+│   ├── NavBar.js
+│   ├── SideBar.js
+│   └── GeneralLayout.js
+│
+├── /pages
+│   ├── DashboardPage.js
+│   └── CustomersPage.js
+│
+└── App.js
+│   ├── Button.js          
+│   └── Navbar.js          
+│
+├── /features              
+│   └── /auth              
+│       └── LoginPage.js   
+├── /redux                 
+│   ├── store.js           
+│   └── authSlice.js       
+│
+├── /pages                 
+│   ├── DashboardPage.js   
+│   └── LoanRequestPage.js 
+│
+├── /routes                
+│   └── AppRoutes.js       
+│
+├── /styles                
+│   └── index.css          
+│
+└── App.js                 
+└── index.js               
+
+
+https://www.figma.com/design/XCfVip5dwaPSW8r6zYrZiy/Borstal-Micro-Finance-Bank?node-id=0-1&t=TUX1IGCK3v2cxLjj-1 //figma.com/design/
