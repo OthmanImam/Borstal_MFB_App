@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body {
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-center font-medium;
+    color:#990000;
+    font-family: 'Inter', sans-serif;
+
+  }
+  p {
+    @apply text-lg font-normal;
+  }
+
+  
+
+  

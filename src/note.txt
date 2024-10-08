@@ -37,5 +37,38 @@
 └── App.js                 
 └── index.js               
 
+https://www.figma.com/design/H63VMqr5uuoOOwesVCCfhf/Borstal-Micro-Finance-Bank-(Copy)?node-id=0-1&node-type=canvas&t=zJQVlMvUDCpGHbiG-0
 
 https://www.figma.com/design/XCfVip5dwaPSW8r6zYrZiy/Borstal-Micro-Finance-Bank?node-id=0-1&t=TUX1IGCK3v2cxLjj-1 //figma.com/design/
+
+import React from 'react';
+import Card from '../ui/Card';
+
+const cardData = [
+  { title: "Total Funds", value: "₦28,000,000", trend: "+10.83%", icon: "💰", analytic: "Analytics for last week" },
+  { title: "Active Loans", value: "₦250,000", trend: "-3.21%", icon: "🏦", analytic: "Analytics for last week" },
+  { title: "Pending Loans", value: "₦750,250", trend: "-2.71%", icon: "🕒", analytic: "Analytics for last week" },
+  { title: "New Accounts", value: "10,183", trend: "+10.83%", icon: "👥", analytic: "Analytics for last week" },
+  { title: "Total Customers", value: "15,158", trend: "+10.83%", icon: "🧑‍🤝‍🧑", analytic: "Analytics for last week" },
+  { title: "Loan Request", value: "10,183", trend: "+10.83%", icon: "📄", analytic: "Analytics for last week" },
+];
+
+const Dashboard = () => {
+  
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {cardData.map((card, index) => (
+        <Card
+          key={index}
+          title={card.title}
+          value={card.value}
+          trend={card.trend}
+          icon={card.icon}
+          analytic={card.analytic}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default Dashboard;

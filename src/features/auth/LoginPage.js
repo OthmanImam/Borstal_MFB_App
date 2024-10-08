@@ -22,8 +22,8 @@ const LoginPage = () => {
 
   return (
     <div className="flex flex-col justify-between h-screen bg-yellow-50"> 
-      <div className='flex flex-col items-center flex-grow gap-4 w-full mb-32'> {/* Adjusted gap for responsiveness */}
-        <img src={Logo} alt="Bristol Micro Finance Bank" className="h-20 w-auto mb-2 shadow-ms mt-16" />
+      <div className='flex flex-col items-center flex-grow gap-4 w-full mb-27'> {/* Adjusted gap for responsiveness */}
+        <img src={Logo} alt="Bristol Micro Finance Bank" className="h-20 w-auto mb-2 shadow-ms mt-14" />
         <h2 className="text-2xl font-bold mb-2 text-yellow-600">Bristol Micro Finance Bank</h2>
         
         {/* Form container */}

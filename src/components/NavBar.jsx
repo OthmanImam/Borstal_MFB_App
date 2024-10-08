@@ -3,14 +3,14 @@ import { Bars3Icon, BellIcon } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { FaSearch, FaCloudUploadAlt, FaBell } from 'react-icons/fa';
+import {  FaCloudUploadAlt} from 'react-icons/fa';
 
 // import { useState } from 'react'
 
 const NavBar = ({ setSidebarOpen, userNavigation }) => {
   return (
-    <div className="sticky w-[100%] top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-6 shadow-xl sm:gap-x-6 lg:px-8">
-      <button
+<div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-xl sm:gap-x-6 sm:px-6 lg:px-8">
+<button
         type="button"
         onClick={() => setSidebarOpen(true)}
         className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
@@ -38,10 +38,10 @@ const NavBar = ({ setSidebarOpen, userNavigation }) => {
         </form>
        {/* Upload Button */}
        <div className="flex items-center space-x-4">
-        <button className="flex items-center px-4 py-2 bg-green-800 text-white rounded-md shadow-md hover:bg-green-700 focus:ring-2 focus:ring-green-500">
-          <FaCloudUploadAlt className="mr-2" />
-          Upload Backup Files
-        </button>
+       <button className="flex items-center px-4 py-2 bg-green-800 text-white rounded-md shadow-md hover:bg-green-700 focus:ring-2 focus:ring-green-500">
+      <FaCloudUploadAlt className="mr-2" />
+      <span className="hidden md:inline">Upload Backup Files</span>
+      </button>
         </div>
         <div className="flex items-center gap-x-4 lg:gap-x-6">
           <button

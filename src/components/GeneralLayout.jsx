@@ -1,61 +1,59 @@
-// Your main layout or page
-import { useState } from 'react'
-import NavBar from '../components/NavBar'
-import SideBar from '../components/SideBar'
-import DashbordPage from '../pages/DashboardPage'
-import Files from '../pages/Files'
-import Analytics from '../pages/Analytics'
-import CustomersPage from '../pages/CustomersPage'
-import Settings from '../pages/Settings'
+import { useState } from 'react';
+import NavBar from '../components/NavBar';
+import SideBar from '../components/SideBar';
+import DashbordPage from '../pages/DashboardPage';
+import Files from '../pages/Files';
+import Analytics from '../pages/Analytics';
+import CustomersPage from '../pages/CustomersPage';
+import Settings from '../pages/Settings';
+import Footer from './Footer.';
 
-import { HomeIcon, PaperClipIcon, Cog6ToothIcon } from '@heroicons/react/24/outline'
-import { MdAnalytics } from 'react-icons/md'
-import { FcCustomerSupport } from 'react-icons/fc'
-import { BiLogIn } from 'react-icons/bi'
+import { Cog6ToothIcon } from '@heroicons/react/24/outline';
+import { RiFileCopy2Line, RiFileUserLine, RiHome7Line, RiLineChartLine, RiLogoutBoxLine } from 'react-icons/ri';
+import BackupModal from '../ui/BackupModal';
 
 const navigation = [
-  { name: 'Dashboard', icon: HomeIcon, current: true },
-  { name: 'Files', icon: PaperClipIcon, current: false },
-  { name: 'Analytics', icon: MdAnalytics, current: false },
-  { name: 'Customers', icon: FcCustomerSupport, current: false },
+  { name: 'Dashboard', icon: RiHome7Line, current: true },
+  { name: 'Files', icon: RiFileCopy2Line, current: false },
+  { name: 'Analytics', icon: RiLineChartLine, current: false },
+  { name: 'Customers', icon: RiFileUserLine, current: false },
   { name: 'Settings', icon: Cog6ToothIcon, current: false },
-  { name: 'Logout', icon: BiLogIn, current: false },
-]
+  { name: 'Logout', icon: RiLogoutBoxLine, current: false },
+];
 
 const userNavigation = [
   { name: 'Your profile', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
+  { name: 'Sign out', href: '/' },
+
+];
 
 export default function MainLayout() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [activeItem, setActiveItem] = useState('Dashboard')
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState('Dashboard');
 
-  // Handle sidebar item clicks
   const handleItemClick = (itemName) => {
-    setActiveItem(itemName)
+    setActiveItem(itemName);
     setSidebarOpen(false); 
-  }
+  };
 
-  // Render content based on the active item
   const renderContent = () => {
     switch (activeItem) {
       case 'Dashboard':
-        return <DashbordPage />
+        return <DashbordPage />;
       case 'Files':
-        return <Files />
+        return <Files />;
       case 'Analytics':
-        return <Analytics />
+        return <Analytics />;
       case 'Customers':
-        return <CustomersPage />
+        return <CustomersPage />;
       case 'Settings':
-        return <Settings />
+        return <Settings />;
       case 'Logout':
-        return <div>Logging Out...</div>
+        return <BackupModal />;
       default:
-        return <div>Welcome!</div>
+        return <div>Welcome!</div>;
     }
-  }
+  };
 
   return (
     <>
@@ -70,17 +68,20 @@ export default function MainLayout() {
         />
 
         {/* Main content area */}
-        <div className="lg:pl-72">
+        <div className="lg:pl-72 h-screen flex flex-col">
           {/* Include NavBar */}
           <NavBar setSidebarOpen={setSidebarOpen} userNavigation={userNavigation} />
 
-          <main className="py-10">
+          <main className="flex-grow py-10">
             <div className="px-4 sm:px-6 lg:px-8">
               {renderContent()} {/* Display content based on active sidebar item */}
             </div>
           </main>
+
+          {/* Include Footer */}
+          <Footer />
         </div>
       </div>
     </>
-  )
+  );
 }
