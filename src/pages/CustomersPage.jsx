@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Table, Tag, Button, notification } from 'antd';
 
 const CustomersPage = () => {
   // Sample customer data with loan information
@@ -34,15 +33,6 @@ const CustomersPage = () => {
   const [data, setData] = useState(initialData);
 
   // Function to send notification for due payment
-  const notifyDuePayment = (customer) => {
-    notification.open({
-      message: `Payment Due for ${customer.name}`,
-      description: `The due payment for ${customer.name} is $${customer.duePayment.toFixed(2)}.`,
-      onClick: () => {
-        console.log('Notification Clicked!');
-      },
-    });
-  };
 
   // Define columns for the table, including loan information
   const columns = [
@@ -73,16 +63,7 @@ const CustomersPage = () => {
       key: 'loanBalance',
       render: (text) => `$${text.toFixed(2)}`,
     },
-    {
-      title: 'Loan Status',
-      dataIndex: 'loanStatus',
-      key: 'loanStatus',
-      render: (status) => (
-        <Tag color={status === 'Active' ? 'green' : 'red'}>
-          {status}
-        </Tag>
-      ),
-    },
+    
     {
       title: 'Due Payment',
       dataIndex: 'duePayment',
@@ -99,18 +80,13 @@ const CustomersPage = () => {
       dataIndex: 'status',
       key: 'status',
       render: (status) => (
-        <Tag color={status === 'Active' ? 'green' : 'red'}>
+        <span
+          className={`px-2 py-1 text-sm rounded-full ${
+            status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+          }`}
+        >
           {status}
-        </Tag>
-      ),
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (text, customer) => (
-        <Button onClick={() => notifyDuePayment(customer)} type="primary">
-          Notify Due Payment
-        </Button>
+        </span>
       ),
     },
   ];
@@ -120,16 +96,47 @@ const CustomersPage = () => {
   const totalLoanBalance = data.reduce((total, customer) => total + customer.loanBalance, 0).toFixed(2);
 
   return (
-    <div>
-      <h2 className="text-lg font-bold mb-4">Customer Information</h2>
-      <Table
-        columns={columns}
-        dataSource={data}
-        pagination={true}
-        rowKey="key"
-      />
-      <h3 className="mt-4">Total Balance: ${totalBalance}</h3>
-      <h3>Total Loan Balance: ${totalLoanBalance}</h3>
+    <div className="container mx-auto p-6">
+      <h2 className="text-2xl font-bold mb-4">Customer Information</h2>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white border border-gray-300">
+          <thead>
+            <tr>
+              {columns.map((column) => (
+                <th key={column.key} className="py-2 px-4 border-b border-gray-300 text-left">
+                  {column.title}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((customer) => (
+              <tr key={customer.key}>
+                <td className="py-2 px-4 border-b border-gray-300">{customer.name}</td>
+                <td className="py-2 px-4 border-b border-gray-300">{customer.accountNumber}</td>
+                <td className="py-2 px-4 border-b border-gray-300">{customer.accountType}</td>
+                <td className="py-2 px-4 border-b border-gray-300">${customer.balance.toFixed(2)}</td>
+                <td className="py-2 px-4 border-b border-gray-300">${customer.loanBalance.toFixed(2)}</td>
+                
+                <td className="py-2 px-4 border-b border-gray-300">${customer.duePayment.toFixed(2)}</td>
+                <td className="py-2 px-4 border-b border-gray-300">{customer.lastTransaction}</td>
+                <td className="py-2 px-4 border-b border-gray-300">
+                  <span
+                    className={`px-2 py-1 text-sm rounded-full ${
+                      customer.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                    }`}
+                  >
+                    {customer.status}
+                  </span>
+                </td>
+                
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <h3 className="mt-4 text-lg">Total Balance: ${totalBalance}</h3>
+      <h3 className="text-lg">Total Loan Balance: ${totalLoanBalance}</h3>
     </div>
   );
 };

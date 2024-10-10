@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 body {
     font-family: 'Inter', sans-serif;
   }
@@ -13,7 +14,15 @@ body {
   p {
     @apply text-lg font-normal;
   }
-
+  
+  /* Styles for form elements */
+  @layer components {
+    input:-webkit-autofill {
+      background-color: transparent !important;
+      -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+      color: gray !important; /* Adjust text color */
+    }
+  }
   
 
   

@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../ui/Card';
-import { BiDownArrow } from 'react-icons/bi';
 import CardO from '../components/Card';
 import { cardData } from '../redux/store';
 import { LoanApplicationChart } from '../ui/Chart';
 import { setSelectedTask, selectSelectedTask } from '../redux/TaskSlice'; // Adjust the path as necessary
 import LoanChart from '../components/LoanChart';
+import SortingInput from '../ui/SortingInput';
 
 const priorities = [
   { id: 1, label: 'Finish customer update', status: 'URGENT', statusColor: 'bg-red-500' },
@@ -28,10 +28,11 @@ function Analytics() {
     <div>
       <div className='flex flex-row justify-between mb-7'>
         <h1 className="text-2xl font-semibold text-red-900 mb-4">Analysis Dashboard</h1> 
-        <div className='flex flex-row border border-gray-200 bg-slate-100 rounded-lg '>
+      <SortingInput />
+        {/* <div className='flex flex-row border border-gray-200 bg-slate-100 rounded-lg '>
           <input type="text" className='bg-transparent m-3' placeholder='Show:' value='Show: Weekly Analysis' />
           <button className="ml-2 bg-yellow-400 px-8 text-black">{<BiDownArrow />}</button>
-        </div>
+        </div> */}
       </div>
 
       {/* Cards Section */}

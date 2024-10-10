@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, Modal, Table, DatePicker } from 'antd';
-// import { CloseOutlined } from '@ant-design/icons';
+import { Button, Modal, Table, DatePicker, Empty } from 'antd';
 import moment from 'moment';
-import { downloadPDF, downloadExcel, downloadImage } from '../utils/DownloadFuction'; // Replace with actual file download functions
+import { downloadPDF } from '../utils/DownloadFuction'; // Replace with actual file download functions
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const MonthlyReportModal = ({
   isVisible,
@@ -12,22 +12,22 @@ const MonthlyReportModal = ({
   transactionData,
   transactionColumns,
 }) => {
+  const navigate = useNavigate(); // Initialize navigate
+
+  // Handle the modal cancel event
+  const handleModalCancel = () => {
+    handleCancel(); // Call the existing handleCancel function
+    navigate('/files'); // Navigate to the dashboard route
+  };
+
   const handleDownloadPDF = () => {
     downloadPDF(transactionData, selectedFile); // Pass transaction data and file name
-  };
-
-  const handleDownloadExcel = () => {
-    downloadExcel(transactionData, selectedFile);
-  };
-
-  const handleDownloadImage = () => {
-    downloadImage(selectedFile); // Replace with logic if needed
   };
 
   return (
     <Modal
       visible={isVisible}
-      onCancel={handleCancel}
+      onCancel={handleModalCancel} // Use the updated cancel handler
       footer={null}
       width={1000}
       className="monthly-report-modal cursor-pointer"
@@ -41,7 +41,7 @@ const MonthlyReportModal = ({
           {/* <Button
             shape="circle"
             icon={<CloseOutlined />}
-            onClick={handleCancel}
+            onClick={handleModalCancel} // Use the updated cancel handler
             className="border-none"
           /> */}
         </div>
@@ -53,27 +53,31 @@ const MonthlyReportModal = ({
               <DatePicker
                 placeholder="Filter by Date"
                 className="mr-0 md:mr-4 mb-2 md:mb-0 cursor-pointer w-full md:w-auto" // Full width on mobile
-                defaultValue={moment('2021-05-16', 'YYYY-MM-DD')}
+                defaultValue={moment()}
               />
               <div className="flex flex-wrap space-x-0 md:space-x-4">
-                <Button type="primary" onClick={handleDownloadPDF} className="w-full md:w-auto">Download PDF</Button>
+                <Button type="primary" onClick={handleDownloadPDF} className="w-full bg-green-800 md:w-auto">
+                  Download PDF
+                </Button>
               </div>
             </div>
 
             {/* Transaction Table */}
             <Table
               className="cursor-pointer"
-              size="small"
+              size="middle"
               rowClassName={() => 'border-b border-gray-200'}
               columns={transactionColumns}
               dataSource={transactionData}
-              pagination={{ pageSizeOptions: ['5', '10', '20'], showSizeChanger: true }}
+              pagination={{ pageSizeOptions: ['5', '10'], showSizeChanger: true }}
               scroll={{ x: true }} // Enable horizontal scrolling for table on smaller screens
             />
           </>
         ) : (
           <div className="text-center py-4">
-            <p>No report available for this file.</p>
+            
+           <Empty description="No Data on this Page" />
+      
           </div>
         )}
       </div>

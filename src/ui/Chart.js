@@ -119,10 +119,12 @@ export const LoanApplicationChart = () => {
             domain={[0, 'auto']}  // Set automatic range based on data, starting from 0
             tickCount={6}        // Total number of ticks (5 unit step)
 />
-          <Tooltip />
+          <Tooltip 
+          cursor={{ fill: 'transparent' }} // Hide hover effect on bars
+          />
           <Legend align="right" verticalAlign="top"  wrapperStyle={{ paddingTop: '10px', fontSize: '14px',}}/>
           <Bar dataKey="Applied" fill="#3CB371" barSize={5} radius={10} />
-          <Bar dataKey="Cleared" fill="#FFD700" barSize={5} radius={10}/>
+          <Bar dataKey="Cleared" fill="#FFD700" barSize={5} radius={10} />
         </BarChart>
       </ResponsiveContainer>
     </div>

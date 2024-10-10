@@ -61,16 +61,23 @@ const FileTable = () => {
       key: 'status',
       render: (status) => (
         <span
-          style={{
-            backgroundColor: status === 'Completed' ? 'green' : 'orange', // Green for completed, orange for others
-            color: 'white', // White text color for both cases
-            fontWeight: 'bold',
-            padding: '2px 10px', // Add some padding for better visual appearance
-            borderRadius: '5px', // Optionally add rounded corners
-          }}
-        >
-          {status}
-        </span>
+        className={`px-2 py-1 text-sm rounded-lg ${
+          status === 'Completed' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+        }`}
+      >
+        {status}
+      </span>
+        // <span
+        //   style={{
+        //     backgroundColor: status === 'Completed' ? 'green' : 'orange', // Green for completed, orange for others
+        //     color: 'white', // White text color for both cases
+        //     fontWeight: 'normal',
+        //     padding: '2px 10px', // Add some padding for better visual appearance
+        //     borderRadius: '5px', // Optionally add rounded corners
+        //   }}
+        // >
+        //   {status}
+        // </span>
       ),
     },
   ];
@@ -192,7 +199,7 @@ const FileTable = () => {
     <div style={{ fontFamily: 'Inter, sans-serif' }}> {/* Apply Inter font here */}
       <h2 className="text-lg font-bold mb-4 text-red-900">All Uploaded Files</h2>
       <Table
-        className="cursor-pointer"
+        className="cursor-pointer text-2xl"
         columns={columns}
         dataSource={data}
         pagination={true}
@@ -209,6 +216,7 @@ const FileTable = () => {
         hasReport={hasReport}
         transactionColumns={transactionColumns}
         transactionData={transactionData}
+        className={'text-xl'}
       />
     </div>
   );

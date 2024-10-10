@@ -1,59 +1,46 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
-import DashbordPage from '../pages/DashboardPage';
-import Files from '../pages/Files';
-import Analytics from '../pages/Analytics';
-import CustomersPage from '../pages/CustomersPage';
-import Settings from '../pages/Settings';
 import Footer from './Footer.';
-
 import { Cog6ToothIcon } from '@heroicons/react/24/outline';
-import { RiFileCopy2Line, RiFileUserLine, RiHome7Line, RiLineChartLine, RiLogoutBoxLine } from 'react-icons/ri';
-import BackupModal from '../ui/BackupModal';
+import { RiFileCopy2Line, RiFileUserLine, RiHome7Line, RiLineChartLine} from 'react-icons/ri';
+import { Outlet } from 'react-router-dom'; // Import Outlet for rendering child routes
 
-const navigation = [
-  { name: 'Dashboard', icon: RiHome7Line, current: true },
-  { name: 'Files', icon: RiFileCopy2Line, current: false },
-  { name: 'Analytics', icon: RiLineChartLine, current: false },
-  { name: 'Customers', icon: RiFileUserLine, current: false },
-  { name: 'Settings', icon: Cog6ToothIcon, current: false },
-  { name: 'Logout', icon: RiLogoutBoxLine, current: false },
-];
-
-const userNavigation = [
-  { name: 'Your profile', href: '#' },
-  { name: 'Sign out', href: '/' },
-
+const navigationItems = [
+  { name: 'Dashboard', icon: RiHome7Line },
+  { name: 'Files', icon: RiFileCopy2Line },
+  { name: 'Analytics', icon: RiLineChartLine },
+  { name: 'Customers', icon: RiFileUserLine },
+  { name: 'Settings', icon: Cog6ToothIcon },
+  // { name: 'Logout', icon: RiLogoutBoxLine },
 ];
 
 export default function MainLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState('Dashboard');
+  const [isBackupModalVisible, setBackupModalVisible] = useState(false); // State for modal visibility
+  const navigate = useNavigate(); // Initialize navigate
 
   const handleItemClick = (itemName) => {
-    setActiveItem(itemName);
-    setSidebarOpen(false); 
-  };
-
-  const renderContent = () => {
-    switch (activeItem) {
-      case 'Dashboard':
-        return <DashbordPage />;
-      case 'Files':
-        return <Files />;
-      case 'Analytics':
-        return <Analytics />;
-      case 'Customers':
-        return <CustomersPage />;
-      case 'Settings':
-        return <Settings />;
-      case 'Logout':
-        return <BackupModal />;
-      default:
-        return <div>Welcome!</div>;
+    if (itemName === 'Logout') {
+      // Show the backup modal instead of navigating immediately
+      setBackupModalVisible(true);
+    } else {
+      // Navigate to the respective route based on item name
+      navigate(`/${itemName.toLowerCase()}`); 
     }
   };
+
+  // const handleModalCancel = () => {
+  //   setBackupModalVisible(false);
+  //   navigate('/login'); // Navigate to the login page
+  // };
+
+  // const handleModalConfirmLogout = () => {
+  //   // Handle actual logout logic here if necessary
+  //   setBackupModalVisible(false);
+  //   navigate('/login'); // Navigate to login after logout
+  // };
 
   return (
     <>
@@ -62,19 +49,18 @@ export default function MainLayout() {
         <SideBar
           sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
-          navigation={navigation}
-          activeItem={activeItem}
+          navigation={navigationItems}
           handleItemClick={handleItemClick}
         />
 
         {/* Main content area */}
         <div className="lg:pl-72 h-screen flex flex-col">
           {/* Include NavBar */}
-          <NavBar setSidebarOpen={setSidebarOpen} userNavigation={userNavigation} />
+          <NavBar setSidebarOpen={setSidebarOpen} />
 
           <main className="flex-grow py-10">
             <div className="px-4 sm:px-6 lg:px-8">
-              {renderContent()} {/* Display content based on active sidebar item */}
+              <Outlet /> {/* Display child components based on the current route */}
             </div>
           </main>
 
@@ -82,6 +68,13 @@ export default function MainLayout() {
           <Footer />
         </div>
       </div>
+
+      {/* Backup Modal for Logout confirmation */}
+      {/* <BackupModal
+        isVisible={isBackupModalVisible}
+        handleCancel={handleModalCancel}
+        handleConfirm={handleModalConfirmLogout} // Assuming you add a confirm handler in your modal
+      /> */}
     </>
   );
 }

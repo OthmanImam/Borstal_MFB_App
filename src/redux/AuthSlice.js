@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { mockUsers } from '../utils/Users'; // Import valid users
 
 const initialState = {
   isAuthenticated: false,
   user: null,
-  password: '',
-  document: [],
+  staffId: '', 
+  errorMessage: '', // Error state for handling invalid credentials
 };
 
 const authSlice = createSlice({
@@ -12,35 +13,32 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      state.isAuthenticated = true;
-      state.user = action.payload;
+      const { staffId, password } = action.payload;
+      const user = mockUsers.find((user) => user.staffId === staffId && user.password === password);
+
+      if (user) {
+        state.isAuthenticated = true;
+        state.user = user;
+        state.staffId = staffId;
+        state.errorMessage = ''; // Clear error on successful login
+      } else {
+        state.isAuthenticated = false;
+        state.errorMessage = 'Invalid Staff ID or Password'; // Set error if login fails
+      }
     },
     logout: (state) => {
       state.isAuthenticated = false;
       state.user = null;
+      state.staffId = '';
     },
-    setPassword: (state, action) => {
-      state.password = action.payload;
-    },
-    clearPassword: (state) => {
-      state.password = '';
-    },
-    uploadDocument: (state, action) => {
-      // Check if the document already exists in the array
-      const documentExists = state.document.some(doc => doc.name === action.payload.name);
-
-      if (!documentExists) {
-        // Add document to the array if it doesn't exist
-        state.document = [...state.document, action.payload];
-      }
+    clearError: (state) => {
+      state.errorMessage = ''; // Clear error message
     }
   },
 });
 
-export const { login, logout, setPassword, clearPassword, uploadDocument } = authSlice.actions;
-
-export const selectPassword = (state) => state.auth.password;
-
-export const selectDocuments = (state) => state.auth.document;
+export const { login, logout, clearError } = authSlice.actions;
+export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
+export const selectErrorMessage = (state) => state.auth.errorMessage;
 
 export default authSlice.reducer;

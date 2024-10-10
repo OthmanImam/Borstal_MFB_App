@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import GeneralLayout from './components/GeneralLayout';
 import DashboardPage from './pages/DashboardPage';
 import CustomersPage from './pages/CustomersPage';
@@ -8,6 +8,8 @@ import LoginPage from './features/auth/LoginPage';
 import Files from './pages/Files';
 import Settings from './pages/Settings';
 import Analytics from './pages/Analytics';
+import BackupModal from './ui/BackupModal'; // Custom modal component for backup functionality
+import './index.css'
 
 const router = createBrowserRouter([
   {
@@ -18,11 +20,14 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      { path: '/', element: <DashboardPage /> },
+      // Use Navigate to redirect the root path to the dashboard
+      { path: '/', element: <Navigate to="/dashboard" replace /> },
+      { path: '/dashboard', element: <DashboardPage /> }, // Changed to a unique path
       { path: '/customers', element: <CustomersPage /> },
-      { path: '/files', element: <Files />},
+      { path: '/files', element: <Files /> },
       { path: '/settings', element: <Settings /> },
       { path: '/analytics', element: <Analytics /> },
+      { path: '/logout', element: <BackupModal /> },
       // Add more routes here as needed (files, analytics, etc.)
     ],
   },

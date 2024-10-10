@@ -1,13 +1,13 @@
 // components/NavBar.jsx
 import { Bars3Icon, BellIcon } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/react'
+import { Menu, MenuButton} from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import {  FaCloudUploadAlt} from 'react-icons/fa';
 
 // import { useState } from 'react'
 
-const NavBar = ({ setSidebarOpen, userNavigation }) => {
+const NavBar = ({ setSidebarOpen, NavigationItems }) => {
   return (
 <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-xl sm:gap-x-6 sm:px-6 lg:px-8">
 <button
@@ -19,21 +19,21 @@ const NavBar = ({ setSidebarOpen, userNavigation }) => {
         <Bars3Icon aria-hidden="true" className="h-6 w-6" />
       </button>
 
-      <div className="flex  flex-1 gap-x-4 self-stretch lg:gap-x-6">
-        <form action="#" method="GET" className="relative h-10 m-auto flex flex-1 border-2">
-          <label htmlFor="search-field" className="sr-only">
+      <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+        <form action="#" method="GET" className="relative h-10 m-auto px-3 flex rounded flex-1 border-2">
+          <label htmlFor="search-field" className="sr-only ">
             Search
           </label>
           <MagnifyingGlassIcon
             aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
+            className="pointer-events-none absolute ml-4 inset-y-0 left-0 h-full w-5 text-gray-400"
           />
           <input
             id="search-field"
             name="search"
             type="search"
             placeholder="Search..."
-            className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
+            className="block h-full w-full inset-0 outline-none border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
           />
         </form>
        {/* Upload Button */}
@@ -77,8 +77,8 @@ const NavBar = ({ setSidebarOpen, userNavigation }) => {
               />
             </MenuButton>
 
-            <MenuItems className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
-              {userNavigation.map((item) => (
+            {/* <MenuItems className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+              {NavigationItems.map((item) => (
                 <MenuItem key={item.name}>
                   <a
                     href={item.href}
@@ -88,7 +88,7 @@ const NavBar = ({ setSidebarOpen, userNavigation }) => {
                   </a>
                 </MenuItem>
               ))}
-            </MenuItems>
+            </MenuItems> */}
           </Menu>
         </div>
       </div>
