@@ -44,11 +44,11 @@ const LoginPage = () => {
           <Notification message={errorMessage} onClose={handleCloseNotification} />
         )}
         
-        <div className="bg-white p-9 rounded shadow-md w-full max-w-md">
+        <div className="bg-white p-5 rounded shadow-md w-full max-w-md md:p-9">
           <form onSubmit={handleLogin}>
             <div className="mb-4 ">
               <label className="block mb-2 text-green-500">Staff ID</label>
-              <div className="relative px-5 border outline-none rounded-lg border-yellow-500">
+              <div className="relative px-4 border outline-none rounded-lg border-yellow-500">
                 <input 
                   type="text" 
                   value={staffId} 
