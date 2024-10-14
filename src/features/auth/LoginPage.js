@@ -7,6 +7,7 @@ import Logo from '../../assets/Logo.svg';
 import Footer from '../../components/Footer.';
 import Notification from '../../ui/Notification';
 import { RiEyeCloseFill, RiEyeCloseLine } from 'react-icons/ri';
+import Checkbox from '../../ui/Checkbox';
 
 const LoginPage = () => {
   const [staffId, setStaffId] = useState('');
@@ -44,10 +45,10 @@ const LoginPage = () => {
           <Notification message={errorMessage} onClose={handleCloseNotification} />
         )}
         
-        <div className="bg-white p-5 rounded shadow-md w-full max-w-md md:p-9">
+        <div className="bg-white p-5 rounded shadow-md w-full max-w-md md:p-9 mt-4">
           <form onSubmit={handleLogin}>
             <div className="mb-4 ">
-              <label className="block mb-2 text-green-500">Staff ID</label>
+              <label className="block mb-2 mx-3 text-green-500">Staff ID</label>
               <div className="relative px-4 border outline-none rounded-lg border-yellow-500">
                 <input 
                   type="text" 
@@ -60,7 +61,7 @@ const LoginPage = () => {
             </div>
             
             <div className="mb-4">
-              <label className="block mb-2 text-green-500">Password</label>
+              <label className="block mb-2 mx-3 text-green-500">Password</label>
               <div className="relative px-5 border rounded-lg border-yellow-500">
                 <input 
                   type={showPassword ? 'text' : 'password'} 
@@ -84,7 +85,8 @@ const LoginPage = () => {
             </div>
             
             <span className='block mb-2 text-sm text-gray-400'>
-              <input type='checkbox' /> Keep me signed in
+              <Checkbox />
+              {/* <input type='checkbox' className='bg-green-600' /> Keep me signed in */}
             </span>
             
             <Button label="Sign in" />

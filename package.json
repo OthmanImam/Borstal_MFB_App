@@ -11,6 +11,7 @@
     "@mui/material": "^6.1.2",
     "@reduxjs/toolkit": "^2.2.7",
     "antd": "^5.21.2",
+    "axios": "^1.7.7",
     "cra-template": "1.2.0",
     "file-saver": "^2.0.5",
     "jspdf": "^2.5.2",

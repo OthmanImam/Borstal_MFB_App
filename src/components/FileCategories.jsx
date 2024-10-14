@@ -18,7 +18,7 @@ const FileCategories = () => {
 
   return (
     <div className="mb-6" style={{ fontFamily: 'Inter, sans-serif' }}>
-      <h2 className="text-lg font-bold mb-4 text-red-900">File Categories</h2>
+      <h2 className="text-lg text-left font-bold mb-4 text-red-900">File Categories</h2>
       <div className="flex flex-wrap justify-between gap-4">
         {categories.map((category) => (
           <button

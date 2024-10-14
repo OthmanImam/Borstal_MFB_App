@@ -104,13 +104,7 @@ function Analytics() {
         heading={'Chart Briefing'}
         body={
           <>
-            <div className='w-1/5'>
-              <LoanChart />
-            </div>
-            <div className='w-1/5'>
-              <LoanChart />
-            </div>
-            <div className='w-1/5'>
+            <div className='w-full flex flex-row'>
               <LoanChart />
             </div>
           </>

@@ -67,7 +67,7 @@ const Card = ({ title, value, icon, trend, analytic }) => {
         <p className={`text-sm font-bold ${trend.includes('-') ? 'text-red-500' : 'text-green-500'}`}>
           ({trend})
         </p>
-        <p className="text-wrap text-xs text-gray-400">{analytic}</p>
+        <p className="text-wrap text-xs text-gray-400 ">{analytic}</p>
       </div>
     </div>
   );

@@ -1,144 +1,95 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';  
+import axios from 'axios';  
+import { Table, Typography, Spin, Alert } from 'antd';  
 
-const CustomersPage = () => {
-  // Sample customer data with loan information
-  const initialData = [
-    {
-      key: '1',
-      name: 'John Doe',
-      accountNumber: '123456789',
-      accountType: 'Savings',
-      balance: 2500,
-      loanBalance: 1000,
-      loanStatus: 'Active',
-      duePayment: 200,
-      lastTransaction: '2024-10-01',
-      status: 'Active',
-    },
-    {
-      key: '2',
-      name: 'Jane Smith',
-      accountNumber: '987654321',
-      accountType: 'Current',
-      balance: 1500,
-      loanBalance: 5000,
-      loanStatus: 'Inactive',
-      duePayment: 800,
-      lastTransaction: '2024-09-25',
-      status: 'Inactive',
-    },
-    // More customers...
-  ];
+const { Title } = Typography;  
 
-  const [data, setData] = useState(initialData);
+const CustomerPage = () => {  
+    const [customers, setCustomers] = useState([]);  
+    const [loading, setLoading] = useState(true);  
+    const [error, setError] = useState('');  
 
-  // Function to send notification for due payment
+    const fetchCustomers = async () => {  
+        try {  
+            const response = await axios.get('https://mocki.io/v1/1a9b21de-9b8a-4f94-b964-da9b25950f49');  
+            setCustomers(response.data);  
+            setLoading(false);  
+        } catch (error) {  
+            setError('Error fetching customer data.');  
+            setLoading(false);  
+        }  
+    };  
 
-  // Define columns for the table, including loan information
-  const columns = [
-    {
-      title: 'Customer Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Account Number',
-      dataIndex: 'accountNumber',
-      key: 'accountNumber',
-    },
-    {
-      title: 'Account Type',
-      dataIndex: 'accountType',
-      key: 'accountType',
-    },
-    {
-      title: 'Balance',
-      dataIndex: 'balance',
-      key: 'balance',
-      render: (text) => `$${text.toFixed(2)}`,
-    },
-    {
-      title: 'Loan Balance',
-      dataIndex: 'loanBalance',
-      key: 'loanBalance',
-      render: (text) => `$${text.toFixed(2)}`,
-    },
-    
-    {
-      title: 'Due Payment',
-      dataIndex: 'duePayment',
-      key: 'duePayment',
-      render: (text) => `$${text.toFixed(2)}`,
-    },
-    {
-      title: 'Last Transaction',
-      dataIndex: 'lastTransaction',
-      key: 'lastTransaction',
-    },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-      render: (status) => (
-        <span
-          className={`px-2 py-1 text-sm rounded-full ${
-            status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-          }`}
-        >
-          {status}
-        </span>
-      ),
-    },
-  ];
+    useEffect(() => {  
+        fetchCustomers();  
+    }, []);  
 
-  // Calculate total balance
-  const totalBalance = data.reduce((total, customer) => total + customer.balance, 0).toFixed(2);
-  const totalLoanBalance = data.reduce((total, customer) => total + customer.loanBalance, 0).toFixed(2);
+    if (loading) return <Spin size="large" tip="Loading..." style={{ display: 'block', margin: '20px auto' }} />;  
+    if (error) return <Alert message={error} type="error" showIcon style={{ margin: '20px' }} />;  
 
-  return (
-    <div className="container mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-4">Customer Information</h2>
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-300">
-          <thead>
-            <tr>
-              {columns.map((column) => (
-                <th key={column.key} className="py-2 px-4 border-b border-gray-300 text-left">
-                  {column.title}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((customer) => (
-              <tr key={customer.key}>
-                <td className="py-2 px-4 border-b border-gray-300">{customer.name}</td>
-                <td className="py-2 px-4 border-b border-gray-300">{customer.accountNumber}</td>
-                <td className="py-2 px-4 border-b border-gray-300">{customer.accountType}</td>
-                <td className="py-2 px-4 border-b border-gray-300">${customer.balance.toFixed(2)}</td>
-                <td className="py-2 px-4 border-b border-gray-300">${customer.loanBalance.toFixed(2)}</td>
-                
-                <td className="py-2 px-4 border-b border-gray-300">${customer.duePayment.toFixed(2)}</td>
-                <td className="py-2 px-4 border-b border-gray-300">{customer.lastTransaction}</td>
-                <td className="py-2 px-4 border-b border-gray-300">
-                  <span
-                    className={`px-2 py-1 text-sm rounded-full ${
-                      customer.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                    }`}
-                  >
-                    {customer.status}
-                  </span>
-                </td>
-                
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <h3 className="mt-4 text-lg">Total Balance: ${totalBalance}</h3>
-      <h3 className="text-lg">Total Loan Balance: ${totalLoanBalance}</h3>
-    </div>
-  );
-};
+    const columns = [  
+        {  
+            title: 'Name',  
+            dataIndex: 'name',  
+            key: 'name',  
+        },  
+        {  
+            title: 'Email',  
+            dataIndex: 'email',  
+            key: 'email',  
+        },  
+        {  
+            title: 'Phone',  
+            dataIndex: 'phone',  
+            key: 'phone',  
+        },  
+        {  
+            title: 'Date of Birth',  
+            dataIndex: 'date_of_birth',  
+            key: 'date_of_birth',  
+        },  
+        {  
+            title: 'Address',  
+            dataIndex: 'address',  
+            key: 'address',  
+        },  
+        {  
+            title: 'Account Balance',  
+            dataIndex: 'account_balance',  
+            key: 'account_balance',  
+            render: (text) => `$${text}`, // Format account balance as currency  
+        },  
+        {  
+            title: 'Loans',  
+            dataIndex: 'loans',  
+            key: 'loans',  
+            render: (loans) => (  
+                loans.length > 0 ? (  
+                    loans.map(loan => (  
+                        <div key={loan.loan_id}>  
+                            <span>Loan ID: {loan.loan_id} (${loan.loan_amount})</span>  
+                        </div>  
+                    ))  
+                ) : (  
+                    <span>No loans</span>  
+                )  
+            ),  
+        },  
+    ];  
 
-export default CustomersPage;
+    return (  
+        <div className="max-w-6xl mx-auto p-6">  
+            <Title level={2}>Customer Information</Title>  
+            <Table  
+                dataSource={customers}  
+                columns={columns}  
+                rowKey="id"  
+                pagination={{ pageSize: 10 }} // Adjust as needed  
+                scroll={{ x: true }} // Enable horizontal scrolling for responsiveness  
+                bordered  
+            />  
+        </div>  
+    );  
+};  
+
+export default CustomerPage;
