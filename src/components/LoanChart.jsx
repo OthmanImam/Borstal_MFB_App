@@ -9,7 +9,7 @@ const LoanChart = () => {
     { name: 'Mar', Payment: 7 },  
     { name: 'Apr', Payment: 9 },  
     { name: 'Jun', Payment: 6 },  
-    { name: 'Jul', Payment: 12 },  
+    { name: 'Jul', Payment: 11 },  
   ];  
 
   const LoanData = [  
@@ -48,21 +48,22 @@ const LoanChart = () => {
     const { cx, cy, dataLength, index } = props;  
 
     if (index === dataLength - 1) {  
+      const color = '#fff'
       return (  
-        <circle cx={cx} cy={cy} r={5} fill="green" stroke="none" />  
+        <circle cx={cx} cy={cy} r={8} fill={color} stroke="none" className='mr-1' />  
       );  
     }  
     return null;  
   };  
 
   return (  
-    <div className='w-full flex flex-row justify-between' style={{ textAlign: 'center' }}>  
-      <div className=' w-1/3 flex flex-col'>
+    <div className='flex flex-col dm:flex-row lg:flex-row w-full gap-8 justify-between items-center' style={{ textAlign: 'center' }}>  
+      <div className=' w-1/3 flex flex-col justify-center'>
       <h2 style={{ fontSize: '20px', color: '#990000' }}>{'Payment'}</h2>  
-      <div style={{ fontSize: '48px', color: 'green' }}>  
+      <div style={{ fontSize: '48px', color: 'green', opacity:0.5 }}>  
         +4 <span style={{ fontSize: '24px', color: 'green' }}>↑</span>  
       </div>
-      <ResponsiveContainer width="100%" height={300}>  
+      <ResponsiveContainer width="100%" height={90} aspect={2} debounce={2}>  
         <LineChart data={PaymentData}>  
           <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />  
           <Tooltip content={<CustomTooltip />} />  
@@ -79,15 +80,15 @@ const LoanChart = () => {
         </div>
       
       {/* Loan Chart */}  
-      <div className='w-1/3'>
+      <div className='w-1/3 items-center'>
         <h2 style={{ fontSize: '20px', color: '#990000' }}>{'Loans'}</h2>
-        <div style={{ fontSize: '48px', color: 'green' }}>  
-        +47 <span style={{ fontSize: '24px', color: 'green' }}>↑</span>  
+        <div style={{ fontSize: '48px', color: 'green', opacity:0.5 }}>  
+        +47 <span style={{ fontSize: '24px', color: 'green', opacity:0.5, fontWeight:'500px' }} className=''>↑</span>  
       </div>
-        <ResponsiveContainer width="100%" height={300}>  
+        <ResponsiveContainer width="100%" height={100} aspect={2}>  
           <LineChart data={LoanData}>  
             <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />  
-            <Tooltip content={<CustomTooltip />} />  
+            <Tooltip content={<CustomTooltip fill=''/>} />  
             <Line  
               type="monotone"  
               dataKey="loan"  
@@ -102,20 +103,20 @@ const LoanChart = () => {
        
 
       {/* Payback Rate Chart */}  
-      <div className='w-1/3'>
+      <div className='w-1/3 flex-col justify-center items-center'>
       <h2 style={{ fontSize: '20px', color: '#990000' }}>{'Payback Rate'}</h2> 
-      <div style={{ fontSize: '48px', color: 'red' }}>  
+      <div style={{ fontSize: '48px', color: 'red', opacity:0.5}}>  
         -12 <span style={{ fontSize: '24px', color: 'red' }}>↑</span>  
       </div> 
-      <ResponsiveContainer width="90%" height={100}>  
+      <ResponsiveContainer width="100%" height={100} aspect={2}>  
         <LineChart data={PaybackRateData}>  
           <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />  
-          <Tooltip content={<CustomTooltip />} />  
+          <Tooltip content={<CustomTooltip />} fill='red'/>  
           <Line  
             type="monotone"  
             dataKey="payback"  
             stroke="#990000"  
-            strokeWidth={3}  
+            strokeWidth={2}  
             dot={<CustomDot dataLength={PaybackRateData.length} />}  
             activeDot={{ r: 8 }}  
           />  
