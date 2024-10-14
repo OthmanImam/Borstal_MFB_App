@@ -38,7 +38,7 @@ const LoginPage = () => {
     <div className="flex flex-col max-w-full w-full max-h-full h-screen bg-yellow-50"> 
       <div className='flex flex-col my-0 mx-auto items-center justify-center flex-grow gap-2'> 
         <img src={Logo} alt="Bristol Micro Finance Bank" className=" shadow-ms " />
-        <h2 className="text-2xl font-bold mb-2 text-yellow-600">Bristol Micro Finance Bank</h2>
+        <h2 className="text-2xl font-bold mb-2 text-yellow-600">Borstal Micro Finance Bank</h2>
         
         {/* Notification */}
         {errorMessage && (
