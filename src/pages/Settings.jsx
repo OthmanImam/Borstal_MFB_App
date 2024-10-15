@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux'; // Import useSelector
 
 // Mock function to simulate fetching the authenticated user
 const getAuthenticatedUser = () => {
@@ -13,6 +14,9 @@ const getAuthenticatedUser = () => {
 };
 
 function Settings() {
+  // Get staffId from Redux store
+  const staffId = useSelector((state) => state.auth.staffId);
+
   // State for the form fields
   const [avatar, setAvatar] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -57,7 +61,9 @@ function Settings() {
     <div className="divide-y divide-gray-300">
       <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
         <div>
+          {/* Display Staff ID at the top */}
           <h2 className="text-2xl font-semibold text-red-900 mb-4">Staff Information</h2>
+          <p className="text-sm font-semibold text-gray-900">Staff ID: {staffId}</p>
           <p className="mt-1 text-sm leading-6 text-gray-600">
             Update your personal information below.
           </p>
@@ -148,13 +154,6 @@ function Settings() {
                   className="block w-full rounded-md border-gray-300 p-2 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
               </div>
-            </div>
-
-            <div className="col-span-full">
-              <label htmlFor="timezone" className="block text-sm font-medium leading-6 text-gray-900">
-                Timezone
-              </label>
-             
             </div>
           </div>
 

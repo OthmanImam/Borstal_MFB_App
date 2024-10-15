@@ -20,6 +20,12 @@ const MonthlyReportModal = ({
     navigate('/files'); // Navigate to the dashboard route
   };
 
+  const handleclick = ()=>{
+    // Add your custom logic here
+    // For example, navigate to a new page with transaction data
+    navigate(`/analytics`); // Navigate to the transactions page with transaction data
+  }
+
   const handleDownloadPDF = () => {
     downloadPDF(transactionData, selectedFile); // Pass transaction data and file name
   };
@@ -38,12 +44,6 @@ const MonthlyReportModal = ({
         {/* Modal Header: File Title and Close Button */}
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold text-center md:text-left">{selectedFile}</h2>
-          {/* <Button
-            shape="circle"
-            icon={<CloseOutlined />}
-            onClick={handleModalCancel} // Use the updated cancel handler
-            className="border-none"
-          /> */}
         </div>
 
         {hasReport ? (
@@ -55,9 +55,17 @@ const MonthlyReportModal = ({
                 className="mr-0 md:mr-4 mb-2 md:mb-0 cursor-pointer w-full md:w-auto" // Full width on mobile
                 defaultValue={moment()}
               />
-              <div className="flex flex-wrap space-x-0 md:space-x-4">
-                <Button type="primary" onClick={handleDownloadPDF} className="w-full bg-green-800 md:w-auto">
-                  Download PDF
+              <div className="flex flex-wrap space-x-0 md:space-x-4 box-border">
+              <Button 
+                type='secondary'
+                onClick={handleDownloadPDF} 
+                className="w-full bg-green-800 text-white hover:bg-white md:w-auto hover:bg-none hover:border-green-900 hover:text-green-950"
+              >
+                Download
+              </Button>
+
+                <Button type="secondary" onClick={handleclick} className="w-full text-green-800 hover:bg-green-900 hover:border-none hover:text-white border-green-900 md:w-auto">
+                  Analysis
                 </Button>
               </div>
             </div>
