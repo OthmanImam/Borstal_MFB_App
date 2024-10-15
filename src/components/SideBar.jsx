@@ -1,8 +1,6 @@
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import Logo from '../assets/Logo.svg';
-import BackupModal from '../ui/BackupModal';
 import { RiLogoutBoxLine } from 'react-icons/ri';
-import { useState } from 'react';
 
 const SideBar = ({
   sidebarOpen,
@@ -11,26 +9,14 @@ const SideBar = ({
   activeItem,
   handleItemClick,
 }) => {
-  const [showModal, setShowModal] = useState(false);
 
-  const handleClick = () => {
-    setShowModal(true); // Trigger modal visibility
-  };
-
-  const closeModal = () => {
-    setShowModal(false); // Function to close the modal
-  };
-
-  // Function to handle item click, close modal, and close sidebar on mobile
   const handleItemSelection = (itemName) => {
-    handleItemClick(itemName); // Mark the selected item
-    setSidebarOpen(false); // Close the sidebar on mobile view
+    handleItemClick(itemName);
+    setSidebarOpen(false); // Close sidebar on mobile view
   };
 
   return (
     <>
-      {showModal && <BackupModal onClose={closeModal} />} {/* Modal component */}
-
       {/* Sidebar for mobile */}
       <div className="relative z-50 lg:hidden">
         <div
@@ -56,14 +42,14 @@ const SideBar = ({
             </div>
             <div className="flex grow flex-col px-6 pb-4">
               <div className="flex h-16 items-center">
-                <img alt="Your Company" src={Logo} className="h-8 w-auto pt-10" />
+                <img alt="Borstal Logo" src={Logo} className="h-8 w-auto pt-10" />
               </div>
               <nav className="flex flex-1 flex-col">
                 <ul className="flex flex-1 flex-col gap-y-7">
                   {navigation.map((item) => (
                     <li key={item.name}>
                       <button
-                        onClick={() => handleItemSelection(item.name)} // Close modal and sidebar on item select
+                        onClick={() => handleItemSelection(item.name)}
                         className={`group flex gap-x-3 hover:drop-shadow-lg rounded-md p-2 text-xl font-semibold leading-6 w-full text-left ${
                           activeItem === item.name
                             ? 'bg-yellow-400 text-red-800'
@@ -75,15 +61,15 @@ const SideBar = ({
                       </button>
                     </li>
                   ))}
-                   <li>
-                <div
-                  className="group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 w-full text-left 
+                  <li>
+                    <div
+                      className="group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 w-full text-left 
                               text-red-900 hover:bg-yellow-600 hover:text-white"
-                >
-                  <RiLogoutBoxLine className="h-6 w-6 shrink-0" />
-                  <button onClick={handleClick}>Logout</button>
-                </div>
-              </li>
+                    >
+                      <RiLogoutBoxLine className="h-6 w-6 shrink-0" />
+                      <button onClick={() => handleItemSelection('Logout')}>Logout</button>
+                    </div>
+                  </li>
                 </ul>
               </nav>
             </div>
@@ -102,7 +88,7 @@ const SideBar = ({
               {navigation.map((item) => (
                 <li key={item.name}>
                   <button
-                    onClick={() => handleItemClick(item.name)} // Desktop view behavior unchanged
+                    onClick={() => handleItemSelection(item.name)}
                     className={`group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 w-full text-left ${
                       activeItem === item.name
                         ? 'bg-yellow-400 text-red-800'
@@ -120,7 +106,7 @@ const SideBar = ({
                               text-red-900 hover:bg-yellow-600 hover:text-white"
                 >
                   <RiLogoutBoxLine className="h-6 w-6 shrink-0" />
-                  <button onClick={handleClick}>Logout</button>
+                  <button onClick={() => handleItemSelection('Logout')}>Logout</button>
                 </div>
               </li>
             </ul>

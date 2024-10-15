@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
-import Footer from './Footer.';
+import Footer from '../components/Footer.';
+import BackupModal from '../ui/BackupModal'; // Import BackupModal
 import { Cog6ToothIcon } from '@heroicons/react/24/outline';
-import { RiFileCopy2Line, RiFileUserLine, RiHome7Line, RiLineChartLine} from 'react-icons/ri';
-import { Outlet } from 'react-router-dom'; // Import Outlet for rendering child routes
+import { RiFileCopy2Line, RiFileUserLine, RiHome7Line, RiLineChartLine } from 'react-icons/ri';
+import { Outlet } from 'react-router-dom';
 
 const navigationItems = [
   { name: 'Dashboard', icon: RiHome7Line },
@@ -13,34 +14,37 @@ const navigationItems = [
   { name: 'Analytics', icon: RiLineChartLine },
   { name: 'Customers', icon: RiFileUserLine },
   { name: 'Settings', icon: Cog6ToothIcon },
-  // { name: 'Logout', icon: RiLogoutBoxLine },
 ];
 
 export default function MainLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [isBackupModalVisible, setBackupModalVisible] = useState(false); // State for modal visibility
-  const navigate = useNavigate(); // Initialize navigate
+  const [isBackupModalVisible, setBackupModalVisible] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [activeItem, setActiveItem] = useState(null);
+
+  useEffect(() => {
+    const currentPath = location.pathname.split('/')[1];
+    const matchingItem = navigationItems.find(item => item.name.toLowerCase() === currentPath);
+    if (matchingItem) {
+      setActiveItem(matchingItem.name);
+    }
+  }, [location.pathname]);
 
   const handleItemClick = (itemName) => {
     if (itemName === 'Logout') {
-      // Show the backup modal instead of navigating immediately
       setBackupModalVisible(true);
+      setActiveItem(itemName); // Set active item for Logout
     } else {
-      // Navigate to the respective route based on item name
-      navigate(`/${itemName.toLowerCase()}`); 
+      setBackupModalVisible(false); // Close modal for other navigation items
+      setActiveItem(itemName);
+      navigate(`/${itemName.toLowerCase()}`);
     }
   };
 
-  // const handleModalCancel = () => {
-  //   setBackupModalVisible(false);
-  //   navigate('/login'); // Navigate to the login page
-  // };
-
-  // const handleModalConfirmLogout = () => {
-  //   // Handle actual logout logic here if necessary
-  //   setBackupModalVisible(false);
-  //   navigate('/login'); // Navigate to login after logout
-  // };
+  const closeBackupModal = () => {
+    setBackupModalVisible(false); // Close modal
+  };
 
   return (
     <>
@@ -51,16 +55,16 @@ export default function MainLayout() {
           setSidebarOpen={setSidebarOpen}
           navigation={navigationItems}
           handleItemClick={handleItemClick}
+          activeItem={activeItem} 
         />
 
         {/* Main content area */}
         <div className="lg:pl-72 h-screen flex flex-col">
-          {/* Include NavBar */}
           <NavBar setSidebarOpen={setSidebarOpen} />
 
           <main className="flex-grow py-10">
             <div className="px-4 sm:px-6 lg:px-8">
-              <Outlet /> {/* Display child components based on the current route */}
+              <Outlet /> {/* Render child routes */}
             </div>
           </main>
 
@@ -69,12 +73,8 @@ export default function MainLayout() {
         </div>
       </div>
 
-      {/* Backup Modal for Logout confirmation */}
-      {/* <BackupModal
-        isVisible={isBackupModalVisible}
-        handleCancel={handleModalCancel}
-        handleConfirm={handleModalConfirmLogout} // Assuming you add a confirm handler in your modal
-      /> */}
+      {/* Show BackupModal if visible */}
+      {isBackupModalVisible && <BackupModal onClose={closeBackupModal} />}
     </>
   );
 }

@@ -52,7 +52,7 @@ function Analytics() {
       {/* Chart Section */}
       <div className="flex flex-col md:flex-row justify-between gap-5 my-10 border-none rounded-lg">
         <div className="min-w-screen md:w-1/2 border p-5 rounded-lg">
-          <h2 className="text-red-500 text-xl font-semibold mb-4">Loan Application Chart</h2>
+          <h2 className="text-red-900 text-xl font-semibold mb-4">Loan Application Chart</h2>
           <LoanApplicationChart />
         </div>
 
@@ -60,8 +60,8 @@ function Analytics() {
         <div className="min-w-screen md:w-1/2 border p-5 rounded-lg">
           {/* Card Header */}
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-red-600 font-semibold text-lg">Priorities</h3>
-            <button className="text-red-500 text-sm font-semibold">View all</button>
+            <h3 className="text-red-900 font-semibold text-lg">Priorities</h3>
+            <button className="text-red-900 text-sm font-semibold">View all</button>
           </div>
 
           {/* Create New Task */}

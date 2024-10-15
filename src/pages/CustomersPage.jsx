@@ -79,7 +79,7 @@ const CustomerPage = () => {
 
     return (  
         <div className="max-w-6xl mx-auto p-6">  
-            <Title level={2}>Customer Information</Title>  
+            <h1 className="text-2xl font-semibold text-red-900 mb-4">Customer Information</h1>  
             <Table  
                 dataSource={customers}  
                 columns={columns}  

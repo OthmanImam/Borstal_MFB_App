@@ -1,47 +1,42 @@
-import { ArrowDownIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
-import { HiUser} from 'react-icons/hi';
+import React, { useState } from 'react';
+import { SlArrowDown } from "react-icons/sl";
 
-const SearchAndSort = () => {
-  const [searchText, setSearchText] = useState('');
 
-  const handleSearchChange = (event) => {
-    setSearchText(event.target.value);
-  };
+const SortingInput = () => {
+  const [selectedOption, setSelectedOption] = useState(''); // State to manage selected option
+  const [inputValue, setInputValue] = useState(''); // State to manage input value
 
-  const handleSortClick = () => {
-    // Add sorting logic here
-    console.log('Sorting triggered');
+  // Function to handle option selection
+  const handleSelectChange = (event) => {
+    const value = event.target.value;
+    setSelectedOption(value);
+    setInputValue(value); // Update input value when an option is selected
   };
 
   return (
-    <div>
-      <div className="mt-2 flex rounded-md shadow-sm">
-        <div className="relative flex flex-grow items-stretch focus-within:z-10">
-          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-            <HiUser className="h-5 w-5 text-gray-400" />
-          </div>
-          <input
-            type="text"
-            name="search"
-            id="search"
-            className="block w-full rounded-none rounded-l-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            placeholder="John Smith"
-            value={searchText}
-            onChange={handleSearchChange}
-          />
-        </div>
-        <button
-          type="button"
-          className="relative -ml-px inline-flex bg-yellow-400 items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-          onClick={handleSortClick}
+    <div className="join w-1/3 h-fit md:flex justify-between flex-col md:flex-row items-center bg-gray-200 rounded-lg"> {/* Adjusted height */}
+      {/* Search Input */}
+      <div className="w-full flex items-center md:w-auto mb-0 px-6 h-full">
+       <span className='text-gray-500'>Show: </span> 
+        <input 
+          className="input bg-transparent p-3 join-item w-full outline-none " // Full height
+          value='Weekly Analysis' // Bind input value to state
+          onChange={(e) => setInputValue(e.target.value)} // Allow manual input
+        />
+      </div>
+
+      {/* Filter Select */}
+      <div className="w-full md:w-auto mb-0 h-full bg-yellow-400 rounded-r-lg flex items-center">
+        <button 
+          className="select  join-item w-12 p-3 h-12 flex justify-center " // Full height
+          // value= {`Show:  ${selectedOption}`} // Bind select value to state
+          onChange={handleSelectChange} // Handle change
         >
-          <ArrowDownIcon className="h-5 w-5 text-gray-400" />
-          
+          <SlArrowDown/>
         </button>
       </div>
     </div>
   );
 };
 
-export default SearchAndSort;
+export default SortingInput;

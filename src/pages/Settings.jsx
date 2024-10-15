@@ -46,7 +46,7 @@ function Settings() {
     <div className="divide-y divide-gray-300">
       <div className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
         <div>
-          <h2 className="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
+          <h2 className="text-2xl font-semibold text-red-900 mb-4">Personal Information</h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
             Use a permanent address where you can receive mail.
           </p>
@@ -72,7 +72,7 @@ function Settings() {
             </div>
 
             <div className="sm:col-span-3">
-              <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
+              <label htmlFor="first-name" className=" block text-sm font-medium leading-6 text-gray-900">
                 First name
               </label>
               <div className="mt-2">
@@ -83,7 +83,7 @@ function Settings() {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   autoComplete="given-name"
-                  className="block w-full rounded-md border-gray-300 py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-gray-300 p-2 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -100,7 +100,7 @@ function Settings() {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   autoComplete="family-name"
-                  className="block w-full rounded-md border-gray-300 py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-gray-300 p-2 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -117,7 +117,7 @@ function Settings() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   autoComplete="email"
-                  className="block w-full rounded-md border-gray-300 py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-gray-300 p-2 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -129,7 +129,7 @@ function Settings() {
               <div className="mt-2">
                 <div className="flex rounded-md border-gray-300 shadow-sm ring-1 ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-500">
                   <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
-                    example.com/
+                   
                   </span>
                   <input
                     id="username"
@@ -138,7 +138,7 @@ function Settings() {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     autoComplete="username"
-                    className="flex-1 border-0 bg-white py-1.5 pl-1 text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
+                    className="flex-1 border-0 bg-white p-2 pl-1 text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -154,7 +154,7 @@ function Settings() {
                   name="timezone"
                   value={timezone}
                   onChange={(e) => setTimezone(e.target.value)}
-                  className="block w-full rounded-md border-gray-300 py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full p-2 rounded-md border-gray-300 py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 >
                   <option>Pacific Standard Time</option>
                   <option>Eastern Standard Time</option>
