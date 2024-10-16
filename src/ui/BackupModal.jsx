@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Modal, Button } from 'antd';
 import { logout } from '../redux/AuthSlice'; // Adjust this import path based on your file structure
 import { FaCloudUploadAlt, FaRegTimesCircle } from 'react-icons/fa';
+import UploadButton from '../ui/UploadButton'; // Adjust this import path based on your file structure
 
 const BackupModal = () => {
   const [isModalVisible, setIsModalVisible] = useState(true);
@@ -37,22 +38,12 @@ const BackupModal = () => {
         If no, <span style={{ color: '#f5222d' }}>PLEASE BACKUP NOW!</span>
       </p>
       <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
-        <Button
-          type="primary"
-          icon={<FaCloudUploadAlt />}
-          onClick={handleUpload}
-          style={{
-            backgroundColor: '#006400',
-            borderColor: '#006400',
-            color: '#fff',
-          }}
-        >
-          Upload Backup Files
-        </Button>
+        <UploadButton />
         <Button
           // icon={<RiLogoutBoxLine />}
           onClick={handleLogout}
           style={{
+            padding: '1.1rem',
             backgroundColor: '#6c757d',
             borderColor: '#6c757d',
             color: '#fff',

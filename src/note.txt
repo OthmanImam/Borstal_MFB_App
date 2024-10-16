@@ -58,3 +58,23 @@ Create the "transactions" resource:
 Paste the transactions array into the JSON body for this endpoint.
 Generate the API URL (e.g., https://mockapi.io/transactions).
 
+
+1. Introduction
+I'm a React developer, and I've developed the frontend for a Hybrid Backup System for Borstal Micro Finance Bank, currently using dummy data to simulate the system's functionality.
+2. Frontend Overview
+The system's frontend is designed to manage backups, monitor analytics, and interact with customers, giving the bank an interface for manual and cloud-based data management.
+3. Key Features of the Frontend
+Dashboard Page: This page provides an overview of backup statuses, recent activity, and internet connection alerts. It's the main hub for monitoring backup progress and viewing insights.
+Files Page: Displays a list of backed-up files with details like file name, upload date, and size, simulated using dummy data.
+Analytics Page: Simulates data insights, showing backup statistics and trends that would be generated from real data in the future.
+Settings Page: Allows users to manage account settings, switch between themes (e.g., dark/light mode), and configure backup preferences.
+Customers Page: Displays customer information such as names, contact details, and account balances, also using dummy data.
+4. Technology Stack
+React: Used for creating dynamic UI components.
+Ant Design & Tailwind CSS: For building a clean, responsive layout and styling.
+State Management: Managed via Redux or React's Context API, handling simulated interactions like file uploads and notifications.
+5. Next Steps
+Integrating with the backend to replace dummy data with real customer data and files.
+Adding live analytics and real-time processing once the cloud services are connected.
+6. Conclusion
+The frontend simulates the complete workflow for managing data backups and analytics. It's ready for backend integration to deliver full functionality.
