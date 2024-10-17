@@ -1,4 +1,3 @@
-// redux/fileSlice.js  
 import { createSlice } from '@reduxjs/toolkit';  
 
 const fileSlice = createSlice({  

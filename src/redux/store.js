@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './AuthSlice'; // Correct import for authReducer
-import taskReducer from './TaskSlice'; // Correct import for taskReducer
+import authReducer from './AuthSlice'; 
+import taskReducer from './TaskSlice'; 
 import fileReducer from './fileSlice'
 import { BiLoaderCircle, BiWallet } from 'react-icons/bi';
 import { AiOutlineCustomerService } from 'react-icons/ai';
@@ -8,9 +8,9 @@ import { PiClockCounterClockwiseFill } from 'react-icons/pi';
 
 const store = configureStore({
   reducer: {
-    auth: authReducer, // Use authReducer from AuthSlice
-    task: taskReducer, // Use taskReducer from TaskSlice
-    file: fileReducer, // Use fileReducer from fileSlice
+    auth: authReducer, 
+    task: taskReducer,
+    file: fileReducer, 
   },
 });
 

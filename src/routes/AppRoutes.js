@@ -1,28 +1,33 @@
-// import React from 'react';
-// import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-// import LoginPage from '../features/auth/LoginPage';
-// import DashboardPage from '../pages/DashboardPage';
-// import CustomersPage from '../pages/CustomersPage';
-// import GeneralLayout from '../components/GeneralLayout';
+import { createBrowserRouter, Navigate } from 'react-router-dom';  
+import GeneralLayout from '../components/GeneralLayout';  
+import DashboardPage from '../pages/DashboardPage';  
+import CustomersPage from '../pages/CustomersPage';  
+import ProtectedRoute from '../routes/ProtectedRoute';  
+import LoginPage from '../features/auth/LoginPage';  
+import Files from '../pages/Files';  
+import Settings from '../pages/Settings';  
+import Analytics from '../pages/Analytics';  
+import BackupModal from '../ui/BackupModal';  
 
-// const router = createBrowserRouter([
-//   {
-//     path: '/login',
-//     element: <LoginPage />, // Separate login route
-//   },
-//   {
-//     path: '/', // Root path that renders GeneralLayout
-//     element: <GeneralLayout />,
-//     children: [
-//         { path: 'customers', element: <CustomersPage /> }, // Customers under GeneralLayout
-//         { path: 'dashboard', element: <DashboardPage /> }, // Dashboard under GeneralLayout
-//       // More routes can be added here
-//     ],
-//   },
-// ]);
+const routes = createBrowserRouter([  
+  {  
+    path: '/',  
+    element: (  
+      <ProtectedRoute>  
+        <GeneralLayout />  
+      </ProtectedRoute>  
+    ),  
+    children: [  
+      { path: '/', element: <Navigate to="/dashboard" replace /> },  
+      { path: '/dashboard', element: <DashboardPage /> },  
+      { path: '/customers', element: <CustomersPage /> },  
+      { path: '/files', element: <Files /> },  
+      { path: '/settings', element: <Settings /> },  
+      { path: '/analytics', element: <Analytics /> },  
+      { path: '/logout', element: <BackupModal /> },  
+    ],  
+  },  
+  { path: '/login', element: <LoginPage /> },  
+]);  
 
-// const AppRoutes = () => {
-//   return <RouterProvider router={router} />;
-// };
-
-// export default AppRoutes;
+export default routes;

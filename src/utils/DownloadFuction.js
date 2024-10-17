@@ -1,5 +1,3 @@
-// src/utils/DownloadFunction.js
-
 import jsPDF from 'jspdf';
 import { saveAs } from 'file-saver';
 import * as XLSX from 'xlsx'; // Correctly importing xlsx
