@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../ui/Card';
 import Chart from '../ui/Chart';
-import { cardData } from '../redux/store';
+import { cardData } from '../data/cardData';
 
 const Dashboard = () => {
   return (
