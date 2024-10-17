@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# Borstal Microfinance Bank App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Borstal Microfinance Bank App is a web application designed to manage microfinance banking operations. The application features functionalities such as customer management, file uploads, analytics, and staff authentication. It is built with React, Redux for state management, Ant Design, and Tailwind CSS for styling.
 
-## Available Scripts
+The system's frontend is designed to manage backups, monitor analytics, and interact with customers, giving the bank an interface for manual and cloud-based data management.
 
-In the project directory, you can run:
+## Table of Contents
+- [Project Structure](#project-structure)
+- [Technologies Used](#technologies-used)
+- [State Management](#state-management)
+- [Key Features](#key-features)
+- [Setup](#setup)
+- [Scripts](#scripts)
 
-### `npm start`
+## Project Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The project follows a typical React application structure with the following folders:
+├── public 
+│ └── index.html # Main HTML template ├── src 
+│ ├── assets # Static assets like images and icons 
+│ ├── components # Reusable UI components (e.g., buttons, tables) 
+│ ├── layouts # Layout components (e.g., GeneralLayout, Sidebar) 
+│ ├── pages # Application pages (e.g., CustomerPage, FilesPage) 
+│ ├── redux # Redux store and slices 
+│ │ ├── authSlice.js # Authentication slice for login/logout actions 
+│ │ ├── fileSlice.js # File management slice for file uploads 
+│ │ ├── taskSlice.js # Task management slice for handling tasks 
+│ ├── services # API services and helper functions (e.g., Axios setup) 
+│ ├── styles # Global and component-specific styles (using Tailwind CSS) 
+│ ├── App.js # Main app component 
+│ └── index.js # Application entry point 
+└── package.json # Project dependencies and scripts
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Key Files
+- **App.js**: Main component that sets up routing and layout.
+- **GeneralLayout.js**: Contains the general structure, including the sidebar, navbar, and content area.
+- **redux/authSlice.js**: Manages user authentication, including login, logout, and staff ID.
+- **BackupModal.js**: Handles the file backup functionality, including file uploads.
+- **CustomerPage.js**: Displays a list of customers and their details (e.g., Name, Loans, Account Balance).
+- **SettingsPage.js**: Manages app configurations and user preferences.
+- **AnalyticsPage.js**: Shows various statistics and insights for business performance.
 
-### `npm test`
+## Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend:
+- **React**: A JavaScript library for building user interfaces.
+- **Redux**: State management library for handling global state.
+- **React Redux**: Integration of Redux with React.
+- **Ant Design**: UI component library for modern and responsive design.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **Axios**: HTTP client for making API requests.
 
-### `npm run build`
+### State Management:
+- **Redux Toolkit**: Manages global state across the application. The `authSlice` is used for user authentication and includes actions such as login, logout, and document upload.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## State Management
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The application uses **Redux** for global state management, particularly for authentication, tasks, and file uploads.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Slices:
+1. **authSlice.js**: Contains the authentication state, including the staff ID used for login, as well as actions for logging in, logging out, and handling uploads.
+2. **fileSlice.js**: Manages the state related to file uploads, such as uploading backup files.
+3. **taskSlice.js**: Handles task-related functionality such as assigning, updating, and deleting tasks.
 
-### `npm run eject`
+### Actions:
+- **Login**: Dispatches a login action with the staff ID.
+- **Logout**: Dispatches a logout action, triggering the BackupModal.
+- **UploadDocument**: Manages the upload of backup files.
+- **Task Management**: Handles creating, updating, and deleting tasks.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Key Features
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Authentication**: Users (staff) can log in using their staff ID. Redux manages the authentication state.
+2. **File Management**: Users can upload backup files through the BackupModal.
+3. **Customer Management**: Displays a list of customers and their financial details.
+4. **Analytics**: Provides insights and statistics on business performance, customer loans, account balances, etc.
+5. **Settings**: Manages user preferences and application configurations.
+6. **Task Management**: Allows staff to create, update, and manage various tasks within the application.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Setup
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+To run this project locally, follow these steps:
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. **Clone the repository**:
+   ```bash
+   git clone [https://github.com/yourusername/borstal-microfinance-bank](https://github.com/OthmanImam/Borstal_MFB_App).git
