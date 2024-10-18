@@ -1,4 +1,3 @@
-// FileComponent.js
 import React from 'react';
 import FileTable from '../components/FileTable';
 import FileCategories from '../components/FileCategories';

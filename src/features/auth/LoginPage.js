@@ -55,7 +55,7 @@ const LoginPage = () => {
                   value={staffId} 
                   onChange={(e) => setStaffId(e.target.value)}
                   className="w-full h-[64px] p-2 inset-0 outline-none "
-                  placeholder="CC201234567"
+                  placeholder="CC123AB"
                   required
                 />
               </div>
@@ -69,7 +69,7 @@ const LoginPage = () => {
                   value={password} 
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full h-[64px] p-2 outline-none pr-10" 
-                  placeholder="Enter your password"
+                  placeholder="password"
                   required
                 />
                 <button 

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../ui/Card';
 import CardO from '../components/Card';
-import { cardData } from '../redux/store';
+import {cardData} from '../data/cardData';
 import { LoanApplicationChart } from '../ui/Chart';
 import { setSelectedTask, selectSelectedTask } from '../redux/TaskSlice'; // Adjust the path as necessary
 import LoanChart from '../components/LoanChart';
