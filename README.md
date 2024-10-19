@@ -77,6 +77,10 @@ The application uses **Redux** for global state management, particularly for aut
 5. **Settings**: Manages user preferences and application configurations.
 6. **Task Management**: Allows staff to create, update, and manage various tasks within the application.
 
+## Login info
+StaffID: CC123AB
+Password: password
+
 ## Setup
 
 To run this project locally, follow these steps:
